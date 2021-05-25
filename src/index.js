@@ -12,7 +12,7 @@ class Pomodoro extends React.Component {
         this.state = {
             session: 25,
             break: 5,
-            timeleft: "25:00", 
+            timeleft: "60:00", 
             running: false
         };
     }
