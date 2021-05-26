@@ -4,8 +4,8 @@ import './index.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
-import appReducer from './reducers/reducer';
-const store = createStore(appReducer);
+import reducer from './reducers/reducer';
+const store = createStore(reducer);
 
 
 function Pomodoro({ appState }) {
