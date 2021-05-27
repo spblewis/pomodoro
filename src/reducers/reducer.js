@@ -12,11 +12,11 @@ const appReducer = (state = initialState, action) => {
 
     switch(action.type) {
         case START:
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 running: true
             });
         case STOP:
-            return Object.assign(state, {
+            return Object.assign({}, state, {
                 running: false
             });
         default:
