@@ -1,12 +1,27 @@
 const initialState = {
     session: 25,
     break: 5,
-    timeleft: "25:00", 
+    timeleft: '25:00', 
     running: false
 };
 
+const START = 'START';
+const STOP = 'STOP';
+
 const appReducer = (state = initialState, action) => { 
-    return state;
+
+    switch(action.type) {
+        case START:
+            return Object.assign(state, {
+                running: true
+            });
+        case STOP:
+            return Object.assign(state, {
+                running: false
+            });
+        default:
+            return state;
+    }
 };
 
 export default appReducer;
