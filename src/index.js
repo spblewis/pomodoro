@@ -39,7 +39,11 @@ const mapStateToProps = (state) => ({
     appState: state,
 });
 
-const App = connect(mapStateToProps)(Pomodoro);
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+const App = connect(mapStateToProps, mapDispatchToProps)(Pomodoro);
 
 ReactDOM.render(
     <Provider store={store}>
