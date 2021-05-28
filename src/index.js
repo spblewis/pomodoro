@@ -15,6 +15,12 @@ function Pomodoro({ appState }) {
             <div>
                 <div id="timer-label">Session</div>
                 <div id="time-left">{appState.currentTime}</div>
+
+                {/* heres a dummy div to temporarily display endTime.  
+                Remove when endTime is confirmed to function */}
+                <div id="end-time">{appState.endTime}</div>
+
+
                 <button id="start_stop">{appState.running ? 'Stop' : 'Start'}</button>
                 <button id="reset">Reset</button>
                 <div>
