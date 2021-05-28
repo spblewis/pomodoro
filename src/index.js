@@ -14,7 +14,7 @@ function Pomodoro({ appState }) {
         
             <div>
                 <div id="timer-label">Session</div>
-                <div id="time-left">{appState.timeleft}</div>
+                <div id="time-left">{appState.currentTime}</div>
                 <button id="start_stop">{appState.running ? 'Stop' : 'Start'}</button>
                 <button id="reset">Reset</button>
                 <div>
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  /* to do */
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Pomodoro);

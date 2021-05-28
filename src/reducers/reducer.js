@@ -1,7 +1,12 @@
+const currentTime = new Date(Date.now());
+
 const initialState = {
     session: 25,
     break: 5,
-    timeleft: '25:00', 
+    timeleft: '25:00',
+    currentTime: (currentTime.getHours() + ':' + 
+                  currentTime.getMinutes() + ':' +
+                  currentTime.getSeconds()), 
     running: false
 };
 
