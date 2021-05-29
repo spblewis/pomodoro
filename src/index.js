@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { createStore, applyMiddleware } from 'redux';
@@ -11,6 +11,24 @@ const store = createStore(reducer, applyMiddleware(thunk));
 
 function Pomodoro({ appState }) {
 
+    useEffect(() => {
+        let timer = null;
+        if (appState.running) {
+            timer = setTimeout(() => {
+                store.dispatch(tick())
+            }, 1000);
+        } 
+
+        return () => clearTimeout(timer);
+    })
+
+    const handleStartStop = () => {
+        return (appState.running ? 
+                store.dispatch(stop()) : 
+                store.dispatch(start()))
+    }
+
+
         return (
         
             <div>
@@ -20,7 +38,7 @@ function Pomodoro({ appState }) {
                 <div>{appState.running.toString()}</div>
                 <button 
                     id="start_stop"
-                    onClick={!appState.running ? store.dispatch(start()) : store.dispatch(stop())}
+                    onClick={handleStartStop}
                 >{appState.running ? 'Stop' : 'Start'}</button>
                 <button id="reset">Reset</button>
                 <div>
@@ -50,22 +68,13 @@ const START = 'START';
 const STOP = 'STOP';
 const TICK = 'TICK';
 //start timer
-let timer = null;
-const start = () => (dispatch) => {
-    clearInterval(timer);
-    timer = setInterval(() => dispatch(tick()), 1000);
-    dispatch({type: START});
-    dispatch(tick());
-}
+
+const start = () => ( { type: START } );
 //tick action creator
-const tick = () => ({ type: TICK });
+const tick = () => ( { type: TICK } );
 
-const stop = () => {
+const stop = () => ( { type: STOP } );
 
-    //wait, isn't this a side effect and shouldn't action creators be pure functions... Look this up
-    clearInterval(timer);
-    return ({ type: STOP });
-}
 
 
 const mapDispatchToProps = (dispatch) => ({
