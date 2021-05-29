@@ -12,7 +12,7 @@ const store = createStore(reducer, applyMiddleware(thunk));
 function Pomodoro({ appState }) {
 
     useEffect(() => {
-        let timer = null;
+        let timer;
         if (appState.running) {
             timer = setTimeout(() => {
                 store.dispatch(tick())
@@ -28,12 +28,20 @@ function Pomodoro({ appState }) {
                 store.dispatch(start()))
     }
 
+    const minutes = Math.floor(appState.timeLeft / 60);
+    const seconds = appState.timeLeft % 60;
+
+    const padTime = (num) => {
+        return num.toString().padStart(2, '0')
+    }
 
         return (
         
             <div>
                 <div id="timer-label">Session</div>
-                <div id="time-left">{appState.timeLeft.toString()}</div>
+                <div id="time-left">{`
+                    ${padTime(minutes)}:${padTime(seconds)}`}
+                </div>
 
                 <div>{appState.running.toString()}</div>
                 <button 
