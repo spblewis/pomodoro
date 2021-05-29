@@ -9,6 +9,7 @@ const initialState = {
 const START = 'START';
 const STOP = 'STOP';
 const TICK = 'TICK';
+const RESET = 'RESET';
 
 const appReducer = (state = initialState, action) => { 
 
@@ -25,9 +26,20 @@ const appReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 timeLeft: state.timeLeft - 1,
             });
+        case RESET:
+            return initialState;
         default:
             return state;
     }
 };
 
 export default appReducer;
+
+export const start = () => ( { type: START } );
+
+export const tick = () => ( { type: TICK } );
+
+export const stop = () => ( { type: STOP } );
+
+export const reset = () => ( { type: RESET } );
+

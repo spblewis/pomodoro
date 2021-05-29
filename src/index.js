@@ -1,54 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
-import reducer from './reducers/reducer';
-import thunk from 'redux-thunk';
-const store = createStore(reducer, applyMiddleware(thunk));
+import { Timer } from './components/timer.js';
+import store from './store.js'
 
 
 function Pomodoro({ appState }) {
 
-    useEffect(() => {
-        let timer;
-        if (appState.running) {
-            timer = setTimeout(() => {
-                store.dispatch(tick())
-            }, 1000);
-        } 
 
-        return () => clearTimeout(timer);
-    })
 
-    const handleStartStop = () => {
-        return (appState.running ? 
-                store.dispatch(stop()) : 
-                store.dispatch(start()))
-    }
 
-    const minutes = Math.floor(appState.timeLeft / 60);
-    const seconds = appState.timeLeft % 60;
-
-    const padTime = (num) => {
-        return num.toString().padStart(2, '0')
-    }
 
         return (
         
             <div>
-                <div id="timer-label">Session</div>
-                <div id="time-left">{`
-                    ${padTime(minutes)}:${padTime(seconds)}`}
-                </div>
-
-                <div>{appState.running.toString()}</div>
-                <button 
-                    id="start_stop"
-                    onClick={handleStartStop}
-                >{appState.running ? 'Stop' : 'Start'}</button>
-                <button id="reset">Reset</button>
+                <Timer appState={appState}/>
                 <div>
                     <p id="break-label">Break Length</p>
                     <p id="break-length">{appState.break}</p>
@@ -72,17 +40,6 @@ const mapStateToProps = (state) => ({
 });
 
 //dispatch actions.  probably these need their own file eventually?
-const START = 'START';
-const STOP = 'STOP';
-const TICK = 'TICK';
-//start timer
-
-const start = () => ( { type: START } );
-//tick action creator
-const tick = () => ( { type: TICK } );
-
-const stop = () => ( { type: STOP } );
-
 
 
 const mapDispatchToProps = (dispatch) => ({
