@@ -4,7 +4,8 @@ const initialState = {
     working: true,
     breakLength: 5,
     timeLeft: 25 * 60,
-    running: false
+    running: false,
+    beeping: false,
 };
 
 const START = 'START';
@@ -21,14 +22,17 @@ const BREAK_DECREMENT = 'BREAK_DECREMENT';
 const appReducer = (state = initialState, action) => { 
 
     switch(action.type) {
+
         case START:
             return Object.assign({}, state, {
                 running: true,
             });
+
         case STOP:
             return Object.assign({}, state, {
                 running: false,
             });
+
         case TICK:
             if (state.timeLeft === 0) {
                 return Object.assign({}, state, {
@@ -36,11 +40,13 @@ const appReducer = (state = initialState, action) => {
                     timeLeft: (state.working ? 
                         state.breakLength * 60 : 
                         state.session * 60),
+                    beeping: true,
                 })
             }
             return Object.assign({}, state, {
                 timeLeft: state.timeLeft - 1,
             });
+
         case SESSION_INCREMENT: {
             const session = Math.min(state.session + 1, 60);
             return Object.assign({}, state, {
@@ -48,6 +54,7 @@ const appReducer = (state = initialState, action) => {
                 timeLeft: session * 60,
                 running: false
             })};
+
         case SESSION_DECREMENT: {
             const session = Math.max(state.session - 1, 1);
             return Object.assign({}, state, {
@@ -55,6 +62,7 @@ const appReducer = (state = initialState, action) => {
                 timeLeft: session * 60,
                 running: false
             })};
+
         case BREAK_INCREMENT: {
             const breakLength = Math.min(state.breakLength + 1, 60);
             return Object.assign({}, state, {
@@ -69,10 +77,13 @@ const appReducer = (state = initialState, action) => {
                 timeLeft: state.session * 60,
                 running: false
             })};
+
         case RESET:
             return initialState;
+
         default:
             return state;
+            
     }
 };
 
