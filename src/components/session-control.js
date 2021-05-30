@@ -1,11 +1,15 @@
 import React from 'react';
-import { sessionIncrement } from './../reducers/reducer.js';
+import { sessionIncrement, sessionDecrement } from './../reducers/reducer.js';
 import store from './../store.js';
 
 export function SessionControl({ session }) {
 
     const incrementSession = () => {
         store.dispatch(sessionIncrement());
+    }
+
+    const decrementSession = () => {
+        store.dispatch(sessionDecrement());
     }
 
     return (
@@ -18,7 +22,12 @@ export function SessionControl({ session }) {
             >
                 Session++
             </button>
-            <button id="session-decrement">Session--</button>
+            <button 
+                id="session-decrement"
+                onClick={decrementSession}
+            >
+                Session--
+            </button>
         </div>
     )
 }
