@@ -1,6 +1,7 @@
 
 const initialState = {
     session: 25,
+    working: true,
     breakLength: 5,
     timeLeft: 25 * 60,
     running: false
@@ -29,34 +30,42 @@ const appReducer = (state = initialState, action) => {
                 running: false,
             });
         case TICK:
+            if (state.timeLeft === 0) {
+                return Object.assign({}, state, {
+                    working: !state.working,
+                    timeLeft: (state.working ? 
+                        state.breakLength * 60 : 
+                        state.session * 60),
+                })
+            }
             return Object.assign({}, state, {
                 timeLeft: state.timeLeft - 1,
             });
         case SESSION_INCREMENT: {
-            const session = state.session + 1;
+            const session = Math.min(state.session + 1, 60);
             return Object.assign({}, state, {
-                session: Math.min(session, 60),
+                session: session,
                 timeLeft: session * 60,
                 running: false
             })};
         case SESSION_DECREMENT: {
-            const session = state.session - 1;
+            const session = Math.max(state.session - 1, 1);
             return Object.assign({}, state, {
-                session: Math.max(session, 1),
+                session: session,
                 timeLeft: session * 60,
                 running: false
             })};
         case BREAK_INCREMENT: {
-            const breakLength = state.breakLength + 1;
+            const breakLength = Math.min(state.breakLength + 1, 60);
             return Object.assign({}, state, {
-                breakLength: Math.min(breakLength, 60),
+                breakLength: breakLength,
                 timeLeft: state.session * 60,
                 running: false
             })};
         case BREAK_DECREMENT: {
-            const breakLength = state.breakLength - 1;
+            const breakLength = Math.max(state.breakLength - 1, 1);
             return Object.assign({}, state, {
-                breakLength: Math.max(breakLength, 1),
+                breakLength: breakLength,
                 timeLeft: state.session * 60,
                 running: false
             })};

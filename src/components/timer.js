@@ -6,7 +6,7 @@ export function Timer({ appState }) {
 
     useEffect(() => {
         let timer;
-        if (appState.running && appState.timeLeft > 0) {
+        if (appState.running) {
             timer = setTimeout(() => {
                 store.dispatch(tick())
             }, 1000);
@@ -34,7 +34,7 @@ export function Timer({ appState }) {
     return (
 
         <div id="timer">
-                <div id="timer-label">Session</div>
+                <div id="timer-label">{appState.working? 'Session' : 'Break'}</div>
                 <div id="time-left">{`
                     ${padTime(minutes)}:${padTime(seconds)}`}
                 </div>
