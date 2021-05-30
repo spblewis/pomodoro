@@ -13,7 +13,7 @@ export function BreakControl({ breakLength }) {
     }
 
     return (
-        <div className="component">
+        <div id="break-controls" className="component">
             <p id="break-label">Break Length</p>
             <p id="break-length">{breakLength}</p>
             <button 

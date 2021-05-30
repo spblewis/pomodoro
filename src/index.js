@@ -14,6 +14,9 @@ function Pomodoro({ appState }) {
         return (
         
             <div id="pomodoro">
+                <div id="stem"></div>
+                <div id="leaf-1" class="leaves"></div>
+                <div id="leaf-2" class="leaves"></div>
                 <Timer appState={appState}/>
                 <SessionControl 
                     session={appState.session}

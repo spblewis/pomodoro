@@ -4,7 +4,8 @@
 }
 
 body {
-    background-color: lightblue;
+    background-color: skyblue;
+
 }
 
 .component {
@@ -23,18 +24,62 @@ body {
 }
 
 #pomodoro {
+    color: white;    
     background-color: tomato;
     display: grid;
-    grid-template-columns: repeat(2, 200px);
-    grid-template-rows: repeat(2, 200px);
-    border-radius: 10%;
+    grid-template-columns: repeat(2, 400px);
+    grid-template-rows: 100px repeat(2, 200px);
+    border-radius: 65% 65% 70% 70%;
+}
+
+#stem {
+    display: block;
+    background-color: green;
+    width: 35px;
+    height: 150px;
+    position: relative;
+    top: -75px;
+    left: 412px;
+    border-radius: 10px;
+}
+
+.leaves {
+    display: block;
+    background-color: green;
+    width: 90px;
+    height: 90px;
+    position: relative;
+
+}
+
+#leaf-1 {
+    transform: rotate(45deg);
+    left: -15px;
+    top: 10px;    
+}
+
+#leaf-2 {
+    left: -415px;
+    top: 10px;
+
 }
 
 #timer {
-    grid-column: 1 / 3;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
     align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: space-evenly;
+}
+
+
+
+#session-controls {
+    grid-row: 3 / 4;
+}
+
+#break-controls {
+    grid-row: 3 / 4;
 }
