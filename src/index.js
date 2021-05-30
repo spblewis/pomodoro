@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 import { Timer } from './components/timer.js';
 import { SessionControl } from './components/session-control.js';
+import { BreakControl } from './components/break-control.js';
 import store from './store.js'
 
 
@@ -17,12 +18,9 @@ function Pomodoro({ appState }) {
                 <SessionControl 
                     session={appState.session}
                 />
-                <div>
-                    <p id="break-label">Break Length</p>
-                    <p id="break-length">{appState.break}</p>
-                    <button id="break-increment">Break++</button>
-                    <button id="break-decrement">Break--</button>
-                </div>
+                <BreakControl 
+                    breakLength={appState.breakLength}
+                />
             </div>
         
         );

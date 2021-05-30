@@ -1,7 +1,7 @@
 
 const initialState = {
     session: 25,
-    break: 5,
+    breakLength: 5,
     timeLeft: 25 * 60,
     running: false
 };
@@ -13,6 +13,9 @@ const RESET = 'RESET';
 
 const SESSION_INCREMENT = 'SESSION_INCREMENT';
 const SESSION_DECREMENT = 'SESSION_DECREMENT';
+
+const BREAK_INCREMENT = 'BREAK_INCREMENT';
+const BREAK_DECREMENT = 'BREAK_DECREMENT';
 
 const appReducer = (state = initialState, action) => { 
 
@@ -39,8 +42,22 @@ const appReducer = (state = initialState, action) => {
         case SESSION_DECREMENT: {
             const session = state.session - 1;
             return Object.assign({}, state, {
-                session: Math.max(session, 0),
+                session: Math.max(session, 1),
                 timeLeft: session * 60,
+                running: false
+            })};
+        case BREAK_INCREMENT: {
+            const breakLength = state.breakLength + 1;
+            return Object.assign({}, state, {
+                breakLength: Math.min(breakLength, 60),
+                timeLeft: state.session * 60,
+                running: false
+            })};
+        case BREAK_DECREMENT: {
+            const breakLength = state.breakLength - 1;
+            return Object.assign({}, state, {
+                breakLength: Math.max(breakLength, 1),
+                timeLeft: state.session * 60,
                 running: false
             })};
         case RESET:
@@ -63,3 +80,7 @@ export const reset = () => ( { type: RESET } );
 export const sessionIncrement = () => ( { type: SESSION_INCREMENT } );
 
 export const sessionDecrement = () => ( { type: SESSION_DECREMENT } );
+
+export const breakIncrement = () => ( { type: BREAK_INCREMENT } );
+
+export const breakDecrement = () => ( { type: BREAK_DECREMENT } );
