@@ -13,7 +13,7 @@ function Pomodoro({ appState }) {
 
         return (
         
-            <div>
+            <div id="pomodoro">
                 <Timer appState={appState}/>
                 <SessionControl 
                     session={appState.session}

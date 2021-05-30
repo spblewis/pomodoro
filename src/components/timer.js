@@ -14,7 +14,6 @@ export function Timer({ appState }) {
     useEffect(() => {
         if (appState.timeLeft === 0) {
             currentAudio.play();
-            
         }
     });
 
@@ -26,7 +25,6 @@ export function Timer({ appState }) {
                 store.dispatch(tick())
             }, 1000);
         } 
-
         return () => clearTimeout(timer);
     })
 
@@ -56,22 +54,24 @@ export function Timer({ appState }) {
 
     return (
 
-        <div id="timer">
+        <div id="timer" className="component">
                 <div id="timer-label">{appState.working? 'Session' : 'Break'}</div>
                 <div id="time-left">{`
                     ${minutes}:${seconds}`}
                 </div>
-                <div>{appState.running.toString()}</div>
-                <button 
-                    id="start_stop"
-                    onClick={handleStartStop}
-                >{appState.running ? 'Stop' : 'Start'}</button>
-                <button id="reset" onClick={handleReset}>Reset</button>
-                <audio
-                    id="beep"
-                    src={beep}
-                    ref={audio} 
-                ></audio>
+                <div id="timer-controls">
+                    <button 
+                        id="start_stop"
+                        onClick={handleStartStop}
+                    >{appState.running ? 'Stop' : 'Start'}</button>
+                    <button id="reset" onClick={handleReset}>Reset</button>
+                    <audio
+                        id="beep"
+                        src={beep}
+                        ref={audio} 
+                    ></audio>
+                </div>
+
         </div>
     )
 

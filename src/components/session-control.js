@@ -13,7 +13,7 @@ export function SessionControl({ session }) {
     }
 
     return (
-        <div>
+        <div className="component">
             <p id="session-label">Session Length</p>
             <p id="session-length">{session}</p>
             <button 
