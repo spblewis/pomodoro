@@ -15,19 +15,21 @@ export function BreakControl({ breakLength }) {
     return (
         <div id="break-controls" className="component">
             <p id="break-label">Break Length</p>
-            <p id="break-length">{breakLength}</p>
-            <button 
-                id="break-increment"
-                onClick={incrementBreak}
-                >
-                    Break++
+            <p id="break-length" class="digital-display">{breakLength}</p>
+            <div>
+                <button 
+                    id="break-increment"
+                    onClick={incrementBreak}
+                    >
+                        Break++
+                    </button>
+                <button 
+                    id="break-decrement"
+                    onClick={decrementBreak}
+                    >
+                        Break--
                 </button>
-            <button 
-                id="break-decrement"
-                onClick={decrementBreak}
-                >
-                    Break--
-                </button>
+            </div>
         </div>
     )
 }

@@ -15,19 +15,21 @@ export function SessionControl({ session }) {
     return (
         <div id="session-controls" className="component">
             <p id="session-label">Session Length</p>
-            <p id="session-length">{session}</p>
-            <button 
-                id="session-increment"
-                onClick={incrementSession}
-            >
-                Session++
-            </button>
-            <button 
-                id="session-decrement"
-                onClick={decrementSession}
-            >
-                Session--
-            </button>
+            <p id="session-length" class="digital-display">{session}</p>
+            <div>
+                <button 
+                    id="session-increment"
+                    onClick={incrementSession}
+                >
+                    Session++
+                </button>
+                <button 
+                    id="session-decrement"
+                    onClick={decrementSession}
+                >
+                    Session--
+                </button>
+            </div>
         </div>
     )
 }

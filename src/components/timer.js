@@ -54,9 +54,9 @@ export function Timer({ appState }) {
 
     return (
 
-        <div id="timer" className="component">
+        <div id="timer" className="component controls">
                 <div id="timer-label">{appState.working? 'Session' : 'Break'}</div>
-                <div id="time-left">{`
+                <div id="time-left" class="digital-display">{`
                     ${minutes}:${seconds}`}
                 </div>
                 <div id="timer-controls">

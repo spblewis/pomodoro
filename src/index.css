@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+:root {
+    --doro-width: 800px;
+    --doro-height: 500px;
+    --leaf-width: 90px;
+    --stem-width: 35px;
+
+    --primary-dark: #9f3e2c;
+    --primary: #ff6347;
+    --primary-light: #ff9e8c;
+}
+
 * {
     margin: 0;
     padding: 0; 
@@ -16,6 +29,19 @@ body {
     justify-items: space-evenly;
 }
 
+.controls {
+    overflow: hidden;
+}
+
+.digital-display {
+    font-family: 'Orbitron', sans-serif;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+}
+
 #root {
     display: flex;
     height: 100vh;
@@ -24,62 +50,87 @@ body {
 }
 
 #pomodoro {
-    color: white;    
-    background-color: tomato;
-    display: grid;
-    grid-template-columns: repeat(2, 400px);
-    grid-template-rows: 100px repeat(2, 200px);
+    position: absolute;
+    color: var(--primary-dark);    
+    background-color: var(--primary);
     border-radius: 65% 65% 70% 70%;
 }
 
+#display-grid {
+    display: grid;
+    grid-template-columns: repeat(2, calc(var(--doro-width) / 2));
+    grid-template-rows: 100px repeat(2, 150px) 100px;
+    height: var(--doro-height);
+    width: var(--doro-width);
+    border-radius: 65% 65% 70% 70%; 
+    overflow: hidden;
+}
+
+#timer {
+    grid-column: 1 / 4;
+    grid-row: 3 / 5;
+    align-self: top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-evenly;
+    margin: 5% 20% 5% 20%;
+    border-radius: 5% 5% 100% 100%;
+    background-color: var(--primary-light);
+}
+
+
+#session-controls {
+    background-color: var(--primary-light);
+    grid-row: 2 / 3;
+    align-self: bottom;
+}
+
+#break-controls {
+    background-color: var(--primary-light);
+    grid-row: 2 / 3;
+    align-self: bottom;
+}
+
+
+
+
+/* Visual stuff for stem and leaves */ 
 #stem {
     display: block;
     background-color: green;
     width: 35px;
     height: 150px;
-    position: relative;
+    position: absolute;
     top: -75px;
-    left: 412px;
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--stem-width) / 2));;
     border-radius: 10px;
 }
 
 .leaves {
     display: block;
     background-color: green;
-    width: 90px;
+    width: var(--leaf-width);
     height: 90px;
-    position: relative;
-
+    position: absolute;
+    
 }
 
 #leaf-1 {
-    transform: rotate(45deg);
-    left: -15px;
+    transform: skew(20deg, 20deg);  
     top: 10px;    
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
 }
 
 #leaf-2 {
-    left: -415px;
+    transform: rotate(-45deg) skew(30deg, 30deg);
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
     top: 10px;
-
 }
 
-#timer {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: space-evenly;
+#leaf-3 {
+    transform: rotate(90deg) skew(20deg, 20deg);
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
+    top: 10px;
 }
 
-
-
-#session-controls {
-    grid-row: 3 / 4;
-}
-
-#break-controls {
-    grid-row: 3 / 4;
-}
