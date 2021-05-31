@@ -1,13 +1,178 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+:root {
+    --doro-width: 800px;
+    --doro-height: 500px;
+    --leaf-width: 90px;
+    --stem-width: 35px;
+
+    --primary-dark: #9f3e2c;
+    --primary: #ff6347;
+    --primary-light: #ff9e8c;
+    --primary-extra-light: #ffd8d1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+    margin: 0;
+    padding: 0; 
 }
+
+body {
+    background-color: skyblue;
+    background-image: linear-gradient(skyblue 60%, green 60%);
+    font-family: 'Roboto' Helvetica sans-serif;
+    font-size: 1.2em;
+}
+
+.component {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-evenly;
+}
+
+.controls {
+    overflow: hidden;
+}
+
+.digital-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+    border: none;
+    color: var(--primary-dark);
+    background-color: var(--primary-extra-light);
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+button:hover {
+    background-color: var(--primary-light);
+}
+
+button:active {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+#root {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#pomodoro {
+    position: absolute;
+    color: var(--primary-dark);    
+    background-color: var(--primary);
+    border-radius: 65% 65% 70% 70%;
+    
+}
+
+#display-grid {
+    display: grid;
+    grid-template-columns: repeat(2, calc(var(--doro-width) / 2));
+    grid-template-rows: 100px repeat(2, 150px) 100px;
+    height: var(--doro-height);
+    width: var(--doro-width);
+    border-radius: 65% 65% 70% 70%; 
+    overflow: hidden;
+}
+
+#timer {
+    grid-column: 1 / 4;
+    grid-row: 3 / 5;
+    align-self: top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-evenly;
+    margin: 5% 20% 5% 20%;
+    padding-top: 5px;
+    border-radius: 5% 5% 100% 100%;
+    background-color: var(--primary-light);
+}
+
+#timer button {
+    width: 230px;
+}
+
+#start_stop {
+    padding-left: 50px;
+}
+
+#reset {
+    padding-right: 50px;
+}
+
+#session-controls {
+    background-color: var(--primary-light);
+    grid-row: 2 / 3;
+    align-self: bottom;
+    margin-left: 25%;
+    margin-top: 15%;
+    padding-top: 10px;
+    border-radius: 45% 0 0 0 ;
+}
+
+#break-controls {
+    background-color: var(--primary-light);
+    grid-row: 2 / 3;
+    align-self: bottom;
+    margin-right: 25%;
+    margin-top: 15%;
+    padding-top: 10px;
+    border-radius: 0 45% 0 0;
+}
+
+
+
+
+/* Visual stuff for stem and leaves */ 
+#stem {
+    display: block;
+    background-color: green;
+    width: 35px;
+    height: 150px;
+    position: absolute;
+    top: -75px;
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--stem-width) / 2));;
+    border-radius: 10px;
+}
+
+.leaves {
+    display: block;
+    background-color: green;
+    width: var(--leaf-width);
+    height: 90px;
+    position: absolute;
+    
+}
+
+#leaf-1 {
+    transform: skew(20deg, 20deg);  
+    top: 10px;    
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
+}
+
+#leaf-2 {
+    transform: rotate(-45deg) skew(30deg, 30deg);
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
+    top: 10px;
+}
+
+#leaf-3 {
+    transform: rotate(90deg) skew(20deg, 20deg);
+    left: calc(calc(var(--doro-width) / 2) - calc(var(--leaf-width) / 2));
+    top: 10px;
+}
+

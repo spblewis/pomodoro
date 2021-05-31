@@ -1,17 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
+import { Timer } from './components/timer.js';
+import { SessionControl } from './components/session-control.js';
+import { BreakControl } from './components/break-control.js';
+import store from './store.js'
+
+
+function Pomodoro({ appState }) {
+
+        return (
+        
+            <div id="pomodoro">
+                <div id="stem"></div>
+                
+                <div id="leaf-1" className="leaves"></div>
+                <div id="leaf-2" className="leaves"></div>
+                <div id="leaf-3" className="leaves"></div>
+                <div id="display-grid">
+                <Timer appState={appState}/>
+                <SessionControl 
+                    session={appState.session}
+                />
+                <BreakControl 
+                    breakLength={appState.breakLength}
+                />
+            </div></div>
+        
+        );
+
+}
+
+const mapStateToProps = (state) => ({
+    appState: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  
+});
+
+const App = connect(mapStateToProps, mapDispatchToProps)(Pomodoro);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
