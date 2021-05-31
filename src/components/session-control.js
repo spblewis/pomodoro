@@ -13,9 +13,9 @@ export function SessionControl({ session }) {
     }
 
     return (
-        <div id="session-controls" className="component">
+        <div id="session-controls" className="component controls">
             <p id="session-label">Session Length</p>
-            <p id="session-length" class="digital-display">{session}</p>
+            <p id="session-length" className="digital-display">{session}</p>
             <div>
                 <button 
                     id="session-increment"

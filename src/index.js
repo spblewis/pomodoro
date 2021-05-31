@@ -16,9 +16,9 @@ function Pomodoro({ appState }) {
             <div id="pomodoro">
                 <div id="stem"></div>
                 
-                <div id="leaf-1" class="leaves"></div>
-                <div id="leaf-2" class="leaves"></div>
-                <div id="leaf-3" class="leaves"></div>
+                <div id="leaf-1" className="leaves"></div>
+                <div id="leaf-2" className="leaves"></div>
+                <div id="leaf-3" className="leaves"></div>
                 <div id="display-grid">
                 <Timer appState={appState}/>
                 <SessionControl 

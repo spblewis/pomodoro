@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 
 :root {
     --doro-width: 800px;
@@ -9,6 +11,7 @@
     --primary-dark: #9f3e2c;
     --primary: #ff6347;
     --primary-light: #ff9e8c;
+    --primary-extra-light: #ffd8d1;
 }
 
 * {
@@ -18,7 +21,9 @@
 
 body {
     background-color: skyblue;
-
+    background-image: linear-gradient(skyblue 60%, green 60%);
+    font-family: 'Roboto' Helvetica sans-serif;
+    font-size: 1.2em;
 }
 
 .component {
@@ -35,11 +40,27 @@ body {
 
 .digital-display {
     font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
 }
 
 button {
     height: 50px;
     width: 150px;
+    border: none;
+    color: var(--primary-dark);
+    background-color: var(--primary-extra-light);
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+button:hover {
+    background-color: var(--primary-light);
+}
+
+button:active {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
 }
 
 #root {
@@ -54,6 +75,7 @@ button {
     color: var(--primary-dark);    
     background-color: var(--primary);
     border-radius: 65% 65% 70% 70%;
+    
 }
 
 #display-grid {
@@ -75,21 +97,41 @@ button {
     align-items: center;
     justify-items: space-evenly;
     margin: 5% 20% 5% 20%;
+    padding-top: 5px;
     border-radius: 5% 5% 100% 100%;
     background-color: var(--primary-light);
 }
 
+#timer button {
+    width: 230px;
+}
+
+#start_stop {
+    padding-left: 50px;
+}
+
+#reset {
+    padding-right: 50px;
+}
 
 #session-controls {
     background-color: var(--primary-light);
     grid-row: 2 / 3;
     align-self: bottom;
+    margin-left: 25%;
+    margin-top: 15%;
+    padding-top: 10px;
+    border-radius: 45% 0 0 0 ;
 }
 
 #break-controls {
     background-color: var(--primary-light);
     grid-row: 2 / 3;
     align-self: bottom;
+    margin-right: 25%;
+    margin-top: 15%;
+    padding-top: 10px;
+    border-radius: 0 45% 0 0;
 }
 
 
